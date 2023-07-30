@@ -34,6 +34,8 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("yieldOnCost").textContent = (yieldOnCost * 100).toFixed(2) + "%";
         document.getElementById("trendedYieldOnCost").textContent = (trendedYieldOnCost * 100).toFixed(2) + "%";
 
+        <script src="script.js"></script>
+
     });
 
 });
