@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let inPlaceCapRate = (inPlaceNOI / purchasePrice) * 100;
         let marketNOI = marketRent * squareFeet;
         let marketCapRate = (marketNOI / purchasePrice) * 100;
+
         let trendedMarketRent = marketRent;
 
         for (let i = 0; i < investmentHorizon; i++) {
@@ -24,13 +25,21 @@ document.addEventListener("DOMContentLoaded", function() {
         let trendedMarketYOC = (trendedMarketRent * squareFeet / (totalCostPerSF * squareFeet)) * 100;
 
         document.getElementById("pricePerSF").textContent = pricePerSF.toFixed(2);
-        document.getElementById("inPlaceNOI").textContent = inPlaceNOI.toFixed(2);
+        document.getElementById("inPlaceNOI").textContent = formatCurrency(inPlaceNOI);
         document.getElementById("inPlaceCapRate").textContent = inPlaceCapRate.toFixed(2) + "%";
-        document.getElementById("marketNOI").textContent = marketNOI.toFixed(2);
+        document.getElementById("marketNOI").textContent = formatCurrency(marketNOI);
         document.getElementById("marketCapRate").textContent = marketCapRate.toFixed(2) + "%";
-        document.getElementById("trendedMarketRent").textContent = trendedMarketRent.toFixed(2);
+        document.getElementById("trendedMarketRent").textContent = formatCurrency(trendedMarketRent);
         document.getElementById("totalCostPerSF").textContent = totalCostPerSF.toFixed(2);
         document.getElementById("trendedMarketCapRate").textContent = trendedMarketCapRate.toFixed(2) + "%";
         document.getElementById("trendedMarketYOC").textContent = trendedMarketYOC.toFixed(2) + "%";
+
+        document.getElementById("summaryPurchasePrice").textContent = formatCurrency(purchasePrice);
+        document.getElementById("summarySquareFeet").textContent = squareFeet.toLocaleString();
+        document.getElementById("outputSection").style.display = "block";
     });
 });
+
+function formatCurrency(value) {
+    return "$" + value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
+}
