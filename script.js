@@ -12,9 +12,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Calculations
         let pricePerSF = purchasePrice / squareFeet;
-        let inPlaceNOI = inPlaceRent * squareFeet;
+        let inPlaceNOI = inPlaceRent;
         let inPlaceCapRate = (inPlaceNOI / purchasePrice) * 100;
-        let marketNOI = marketRent * squareFeet;
+        let marketNOI = marketRent;
         let marketCapRate = (marketNOI / purchasePrice) * 100;
         let trendedMarketRent = marketRent;
 
@@ -23,8 +23,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         let totalCostPerSF = (purchasePrice + costToStabilize) / squareFeet;
-        let trendedMarketCapRate = (trendedMarketRent * squareFeet / purchasePrice) * 100;
-        let trendedMarketYOC = (marketRent / totalCostPerSF) * 100;
+        let trendedMarketCapRate = (trendedMarketRent / totalCostPerSF) * 100;
+        let trendedMarketYOC = (trendedMarketRent / totalCostPerSF) * 100;
 
         // Outputting results to HTML
         document.getElementById("summaryPurchasePrice").textContent = '$' + purchasePrice.toLocaleString();
@@ -55,5 +55,5 @@ function formatNumberInput(input) {
 // Format currency input with commas
 function formatCurrencyInput(input) {
     let value = input.value.replace(/[^0-9.]/g, '');
-    input.value = '$' + parseFloat(value).toLocaleString();
+    input.value = '$' + parseFloat(value).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
