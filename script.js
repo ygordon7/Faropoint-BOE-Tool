@@ -45,11 +45,11 @@ document.addEventListener("DOMContentLoaded", function() {
 // Format number input with commas
 function formatNumberInput(input) {
     let value = input.value.replace(/,/g, '');
-    input.value = parseFloat(value).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    input.value = value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
 // Format currency input with commas
 function formatCurrencyInput(input) {
     let value = input.value.replace(/[^0-9.]/g, '');
-    input.value = '$' + parseFloat(value).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    input.value = '$' + value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
