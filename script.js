@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let inPlaceCapRate = (inPlaceNOI / purchasePrice) * 100;
         let marketNOI = marketRent * squareFeet;
         let marketCapRate = (marketNOI / purchasePrice) * 100;
+        let marketYOC = (marketRent / (purchasePrice + costToStabilize)) * 100;
         let trendedMarketRent = marketRent;
 
         for (let i = 0; i < investmentHorizon; i++) {
@@ -39,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("inPlaceCapRate").textContent = inPlaceCapRate.toFixed(2) + "%";
         document.getElementById("marketNOI").textContent = '$' + marketNOI.toFixed(2);
         document.getElementById("marketCapRate").textContent = marketCapRate.toFixed(2) + "%";
-        document.getElementById("marketYOC").textContent = (marketRent / totalCostPerSF * 100).toFixed(2) + "%";
+        document.getElementById("marketYOC").textContent = marketYOC.toFixed(2) + "%";
         document.getElementById("trendedMarketRent").textContent = '$' + trendedMarketRent.toFixed(2);
         document.getElementById("trendedMarketCapRate").textContent = trendedMarketCapRate.toFixed(2) + "%";
         document.getElementById("trendedMarketYOC").textContent = trendedMarketYOC.toFixed(2) + "%";
