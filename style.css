@@ -1,99 +1,67 @@
-/* style.css */
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: white;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 h1 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: navy;
-}
-
-h2 {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-  color: navy;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .input-section {
-  margin-bottom: 30px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
 .input-section label {
-  display: block;
-  margin-bottom: 5px;
-  color: navy;
+    font-weight: bold;
 }
 
-.input-section input[type="text"],
-.input-section input[type="number"] {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.input-section input {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
 }
 
-button#calculate {
-  background-color: navy;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  display: block;
-  width: 100%;
-  font-size: 16px;
-  border-radius: 4px;
+.button-section {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-button#calculate:hover {
-  background-color: darkblue;
+#calculate {
+    background-color: navy;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
 }
 
 .output-section {
-  display: none;
+    display: none;
 }
 
-.output-section h2 {
-  margin-bottom: 10px;
-  color: navy;
+.output-section table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
+.output-section table td {
+    padding: 8px;
+    border-bottom: 1px solid #ccc;
 }
 
-table th,
-table td {
-  padding: 8px;
-  text-align: left;
-  border-bottom: 1px solid #ccc;
-}
-
-table th {
-  color: navy;
-}
-
-table td {
-  color: #333;
-}
-
-table tr:last-child td {
-  border-bottom: none;
-}
-
-#outputSection {
-  display: none;
+.output-section table td:last-child {
+    text-align: right;
 }
