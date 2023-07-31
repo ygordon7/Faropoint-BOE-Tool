@@ -1,7 +1,7 @@
 function formatCurrency(inputElement) {
     let value = parseFloat(inputElement.value.replace(/[\$,]/g, ''));
     if (!isNaN(value)) {
-        inputElement.value = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
+        inputElement.value = `$${value.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
     } else {
         inputElement.value = "";
     }
