@@ -1,9 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-
-    // Button event listener
-    document.addEventListener("click", function() {
-
-        // Getting values from inputs
+    document.getElementById("calculate").addEventListener("click", function() {
         let purchasePrice = parseFloat(document.getElementById("purchasePrice").value);
         let squareFeet = parseFloat(document.getElementById("squareFeet").value);
         let inPlaceRent = parseFloat(document.getElementById("inPlaceRent").value);
@@ -11,8 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let marketRent = parseFloat(document.getElementById("marketRent").value);
         let investmentHorizon = parseFloat(document.getElementById("investmentHorizon").value);
         let rentGrowth = parseFloat(document.getElementById("rentGrowth").value) / 100;
-        
-        // Calculations
+
         let pricePerSF = purchasePrice / squareFeet;
         let inPlaceNOI = inPlaceRent * squareFeet;
         let inPlaceCapRate = (inPlaceNOI / purchasePrice) * 100;
@@ -27,8 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let totalCostPerSF = pricePerSF + costToStabilize;
         let trendedMarketCapRate = (trendedMarketRent * squareFeet / purchasePrice) * 100;
         let trendedMarketYOC = (trendedMarketRent * squareFeet / (totalCostPerSF * squareFeet)) * 100;
-        
-        // Outputting results to HTML
+
         document.getElementById("pricePerSF").textContent = pricePerSF.toFixed(2);
         document.getElementById("inPlaceNOI").textContent = inPlaceNOI.toFixed(2);
         document.getElementById("inPlaceCapRate").textContent = inPlaceCapRate.toFixed(2) + "%";
@@ -38,6 +32,5 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("totalCostPerSF").textContent = totalCostPerSF.toFixed(2);
         document.getElementById("trendedMarketCapRate").textContent = trendedMarketCapRate.toFixed(2) + "%";
         document.getElementById("trendedMarketYOC").textContent = trendedMarketYOC.toFixed(2) + "%";
-
     });
 });
