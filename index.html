@@ -14,21 +14,21 @@
 
         <div class="input-section">
             <label for="rsf">RSF:</label>
-            <input type="text" id="rsf" oninput="formatNumberInput(this)" placeholder="0,000,000">
+            <input type="text" id="rsf" oninput="formatNumberInput(this)" placeholder="RSF">
             <label for="price">Price:</label>
-            <input type="text" id="price" oninput="formatCurrencyInput(this)" placeholder="$0,000,000">
+            <input type="text" id="price" oninput="formatCurrencyInput(this)" placeholder="Price">
             <label for="inPlaceNOI">In Place NOI PSF:</label>
-            <input type="text" id="inPlaceNOI" oninput="formatCurrencyInput(this)" placeholder="$0.00">
+            <input type="text" id="inPlaceNOI" oninput="formatCurrencyInput(this)" placeholder="In Place NOI PSF">
             <label for="marketRent">Market Rent PSF:</label>
-            <input type="text" id="marketRent" oninput="formatCurrencyInput(this)" placeholder="$0.00">
+            <input type="text" id="marketRent" oninput="formatCurrencyInput(this)" placeholder="Market Rent PSF">
             <label for="costToStabilize">Cost to Stabilize:</label>
-            <input type="text" id="costToStabilize" oninput="formatCurrencyInput(this)" placeholder="$0.00">
+            <input type="text" id="costToStabilize" oninput="formatCurrencyInput(this)" placeholder="Cost to Stabilize">
             <label for="marketRentGrowth">Market Rent Growth CAGR:</label>
-            <input type="text" id="marketRentGrowth" placeholder="0.0%">
+            <input type="text" id="marketRentGrowth" oninput="formatNumberInput(this)" placeholder="Market Rent Growth CAGR">
             <label for="propertyAppreciation">Property Appreciation:</label>
-            <input type="text" id="propertyAppreciation" placeholder="0.0%">
+            <input type="text" id="propertyAppreciation" oninput="formatNumberInput(this)" placeholder="Property Appreciation">
             <label for="investmentHorizon">Investment Horizon:</label>
-            <input type="text" id="investmentHorizon" placeholder="0">
+            <input type="text" id="investmentHorizon" oninput="formatNumberInput(this)" placeholder="Investment Horizon">
             <button id="calculate">Run</button>
         </div>
 
