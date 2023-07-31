@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         let totalCostPerSF = (purchasePrice + costToStabilize) / squareFeet;
         let trendedMarketCapRate = (trendedMarketRent * squareFeet / purchasePrice) * 100;
-        let trendedMarketYOC = (trendedMarketRent * squareFeet / (totalCostPerSF * squareFeet)) * 100;
+        let trendedMarketYOC = (marketRent / totalCostPerSF) * 100;
 
         // Outputting results to HTML
         document.getElementById("summaryPurchasePrice").textContent = '$' + purchasePrice.toLocaleString();
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("inPlaceCapRate").textContent = inPlaceCapRate.toFixed(2) + "%";
         document.getElementById("marketNOI").textContent = '$' + marketNOI.toFixed(2);
         document.getElementById("marketCapRate").textContent = marketCapRate.toFixed(2) + "%";
-        document.getElementById("marketYOC").textContent = (marketRent / totalCostPerSF * 100).toFixed(2) + "%";
+        document.getElementById("marketYOC").textContent = trendedMarketYOC.toFixed(2) + "%";
         document.getElementById("trendedMarketRent").textContent = '$' + trendedMarketRent.toFixed(2);
         document.getElementById("trendedMarketCapRate").textContent = trendedMarketCapRate.toFixed(2) + "%";
         document.getElementById("trendedMarketYOC").textContent = trendedMarketYOC.toFixed(2) + "%";
