@@ -33,9 +33,9 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("summaryPurchasePrice").textContent = '$' + purchasePrice.toLocaleString();
         document.getElementById("summarySquareFeet").textContent = squareFeet.toLocaleString();
         document.getElementById("pricePerSF").textContent = '$' + pricePerSF.toFixed(2);
-        document.getElementById("inPlaceNOI").textContent = '$' + inPlaceNOI.toFixed(2);
+        document.getElementById("inPlaceNOI").textContent = '$' + inPlaceRent.toFixed(2);
         document.getElementById("inPlaceCapRate").textContent = inPlaceCapRate.toFixed(2) + "%";
-        document.getElementById("marketNOI").textContent = '$' + marketNOI.toFixed(2);
+        document.getElementById("marketNOI").textContent = '$' + marketRent.toFixed(2);
         document.getElementById("marketCapRate").textContent = marketCapRate.toFixed(2) + "%";
         document.getElementById("trendedMarketRent").textContent = '$' + trendedMarketRent.toFixed(2);
         document.getElementById("totalCostPerSF").textContent = '$' + totalCostPerSF.toFixed(2);
