@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("calculate").addEventListener("click", function() {
         // Getting values from inputs
         let purchasePrice = parseFloat(document.getElementById("purchasePrice").value.replace(/[^0-9.]/g, ''));
-        let squareFeet = parseFloat(document.getElementById("squareFeet").value.replace(/[^0-9.]/g, ''));
+        let squareFeet = parseFloat(document.getElementById("squareFeet").value.replace(/,/g, ''));
         let inPlaceRent = parseFloat(document.getElementById("inPlaceRent").value.replace(/[^0-9.]/g, ''));
         let costToStabilize = parseFloat(document.getElementById("costToStabilize").value.replace(/[^0-9.]/g, ''));
         let marketRent = parseFloat(document.getElementById("marketRent").value.replace(/[^0-9.]/g, ''));
@@ -12,10 +12,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Calculations
         let pricePerSF = purchasePrice / squareFeet;
-        let totalCostPerSF = (pricePerSF + costToStabilize / squareFeet);
-        let inPlaceNOI = inPlaceRent;
+        let inPlaceNOI = inPlaceRent * squareFeet;
         let inPlaceCapRate = (inPlaceNOI / purchasePrice) * 100;
-        let marketNOI = marketRent;
+        let marketNOI = marketRent * squareFeet;
         let marketCapRate = (marketNOI / purchasePrice) * 100;
         let trendedMarketRent = marketRent;
 
@@ -23,11 +22,12 @@ document.addEventListener("DOMContentLoaded", function() {
             trendedMarketRent += trendedMarketRent * rentGrowth;
         }
 
-        let trendedMarketCapRate = (trendedMarketRent / purchasePrice) * 100;
-        let trendedMarketYOC = (trendedMarketRent / totalCostPerSF) * 100;
+        let totalCostPerSF = (purchasePrice + costToStabilize) / squareFeet;
+        let trendedMarketCapRate = (trendedMarketRent * squareFeet / purchasePrice) * 100;
+        let trendedMarketYOC = (marketRent / totalCostPerSF) * 100;
 
         // Outputting results to HTML
-        document.getElementById("summaryPurchasePrice").textContent = '$' + purchasePrice.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        document.getElementById("summaryPurchasePrice").textContent = '$' + purchasePrice.toLocaleString();
         document.getElementById("summarySquareFeet").textContent = squareFeet.toLocaleString();
         document.getElementById("pricePerSF").textContent = '$' + pricePerSF.toFixed(2);
         document.getElementById("costToStabilizeOutput").textContent = '$' + costToStabilize.toFixed(2);
@@ -47,13 +47,13 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // Format number input with commas
-function formatNumber(input) {
-    let value = input.value.replace(/[^0-9.]/g, '');
+function formatNumberInput(input) {
+    let value = input.value.replace(/,/g, '');
     input.value = parseFloat(value).toLocaleString();
 }
 
 // Format currency input with commas
-function formatCurrency(input) {
+function formatCurrencyInput(input) {
     let value = input.value.replace(/[^0-9.]/g, '');
-    input.value = '$' + parseFloat(value).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    input.value = '$' + parseFloat(value).toLocaleString();
 }
