@@ -1,39 +1,43 @@
-document.getElementById("calculate").addEventListener("click", function() {
-    // Retrieve input values
-    const purchasePrice = parseFloat(document.getElementById("purchasePrice").value);
-    const sf = parseFloat(document.getElementById("sf").value);
-    const cost = parseFloat(document.getElementById("cost").value);
-    const inPlaceRent = parseFloat(document.getElementById("inPlaceRent").value);
-    const marketRent = parseFloat(document.getElementById("marketRent").value);
-    const investmentHorizon = parseFloat(document.getElementById("investmentHorizon").value);
-    const rentGrowth = parseFloat(document.getElementById("rentGrowth").value) / 100;
+document.addEventListener("DOMContentLoaded", function() {
 
-    // Calculate derived values
-    const pricePerSF = purchasePrice / sf;
-    const totalCostPerSF = pricePerSF + cost;
-    const inPlaceNOI = inPlaceRent * sf;
-    const marketNOI = marketRent * sf;
-    const inPlaceCapRate = inPlaceNOI / purchasePrice;
-    const marketCapRate = marketNOI / purchasePrice;
-    const inPlaceYOC = inPlaceNOI / (sf * totalCostPerSF);
-    const marketYOC = marketNOI / (sf * totalCostPerSF);
+    // Button event listener
+    document.getElementById("calculate").addEventListener("click", function() {
 
-    let trendedMarketRent = marketRent;
-    for (let i = 0; i < investmentHorizon; i++) {
-        trendedMarketRent *= (1 + rentGrowth);
-    }
-    const trendedMarketNOI = trendedMarketRent * sf;
-    const trendedMarketCapRate = trendedMarketNOI / purchasePrice;
-    const trendedMarketYOC = trendedMarketNOI / (sf * totalCostPerSF);
+        // Getting values from inputs
+        let purchasePrice = parseFloat(document.getElementById("purchasePrice").value);
+        let squareFeet = parseFloat(document.getElementById("squareFeet").value);
+        let inPlaceRent = parseFloat(document.getElementById("inPlaceRent").value);
+        let costToStabilize = parseFloat(document.getElementById("costToStabilize").value);
+        let marketRent = parseFloat(document.getElementById("marketRent").value);
+        let investmentHorizon = parseFloat(document.getElementById("investmentHorizon").value);
+        let rentGrowth = parseFloat(document.getElementById("rentGrowth").value) / 100;
+        
+        // Calculations
+        let pricePerSF = purchasePrice / squareFeet;
+        let inPlaceNOI = inPlaceRent * squareFeet;
+        let inPlaceCapRate = (inPlaceNOI / purchasePrice) * 100;
+        let marketNOI = marketRent * squareFeet;
+        let marketCapRate = (marketNOI / purchasePrice) * 100;
+        let trendedMarketRent = marketRent;
 
-    // Display results
-    document.getElementById("pricePerSFResult").innerText = pricePerSF.toFixed(2);
-    document.getElementById("totalCostPerSFResult").innerText = totalCostPerSF.toFixed(2);
-    document.getElementById("inPlaceCapRateResult").innerText = (inPlaceCapRate * 100).toFixed(2) + "%";
-    document.getElementById("marketCapRateResult").innerText = (marketCapRate * 100).toFixed(2) + "%";
-    document.getElementById("inPlaceYOCResult").innerText = (inPlaceYOC * 100).toFixed(2) + "%";
-    document.getElementById("marketYOCResult").innerText = (marketYOC * 100).toFixed(2) + "%";
-    document.getElementById("trendedMarketRentResult").innerText = trendedMarketRent.toFixed(2);
-    document.getElementById("trendedMarketCapRateResult").innerText = (trendedMarketCapRate * 100).toFixed(2) + "%";
-    document.getElementById("trendedMarketYOCResult").innerText = (trendedMarketYOC * 100).toFixed(2) + "%";
+        for (let i = 0; i < investmentHorizon; i++) {
+            trendedMarketRent += trendedMarketRent * rentGrowth;
+        }
+
+        let totalCostPerSF = pricePerSF + costToStabilize;
+        let trendedMarketCapRate = (trendedMarketRent * squareFeet / purchasePrice) * 100;
+        let trendedMarketYOC = (trendedMarketRent * squareFeet / (totalCostPerSF * squareFeet)) * 100;
+        
+        // Outputting results to HTML
+        document.getElementById("pricePerSF").textContent = pricePerSF.toFixed(2);
+        document.getElementById("inPlaceNOI").textContent = inPlaceNOI.toFixed(2);
+        document.getElementById("inPlaceCapRate").textContent = inPlaceCapRate.toFixed(2) + "%";
+        document.getElementById("marketNOI").textContent = marketNOI.toFixed(2);
+        document.getElementById("marketCapRate").textContent = marketCapRate.toFixed(2) + "%";
+        document.getElementById("trendedMarketRent").textContent = trendedMarketRent.toFixed(2);
+        document.getElementById("totalCostPerSF").textContent = totalCostPerSF.toFixed(2);
+        document.getElementById("trendedMarketCapRate").textContent = trendedMarketCapRate.toFixed(2) + "%";
+        document.getElementById("trendedMarketYOC").textContent = trendedMarketYOC.toFixed(2) + "%";
+
+    });
 });
