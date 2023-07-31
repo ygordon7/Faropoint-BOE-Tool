@@ -1,12 +1,15 @@
+// script.js
 document.addEventListener("DOMContentLoaded", function() {
+
     // Button event listener
     document.getElementById("calculate").addEventListener("click", function() {
+
         // Getting values from inputs
-        let purchasePrice = parseFloat(document.getElementById("purchasePrice").value.replace(/[^0-9.]/g, ''));
-        let squareFeet = parseFloat(document.getElementById("squareFeet").value.replace(/[^0-9.]/g, ''));
+        let purchasePrice = parseFloat(document.getElementById("purchasePrice").value.replace(/,/g, ''));
+        let squareFeet = parseFloat(document.getElementById("squareFeet").value.replace(/,/g, ''));
         let inPlaceRent = parseFloat(document.getElementById("inPlaceRent").value);
-        let costToStabilize = parseFloat(document.getElementById("costToStabilize").value.replace(/[^0-9.]/g, ''));
-        let marketRent = parseFloat(document.getElementById("marketRent").value.replace(/[^0-9.]/g, ''));
+        let costToStabilize = parseFloat(document.getElementById("costToStabilize").value);
+        let marketRent = parseFloat(document.getElementById("marketRent").value);
         let investmentHorizon = parseFloat(document.getElementById("investmentHorizon").value);
         let rentGrowth = parseFloat(document.getElementById("rentGrowth").value) / 100;
 
@@ -24,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         let totalCostPerSF = (purchasePrice + costToStabilize) / squareFeet;
         let trendedMarketCapRate = (trendedMarketRent * squareFeet / purchasePrice) * 100;
-        let trendedMarketYOC = (trendedMarketRent / totalCostPerSF) * 100;
+        let trendedMarketYOC = (trendedMarketRent * squareFeet / (totalCostPerSF * squareFeet)) * 100;
 
         // Outputting results to HTML
         document.getElementById("summaryPurchasePrice").textContent = '$' + purchasePrice.toLocaleString();
@@ -36,19 +39,20 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("inPlaceCapRate").textContent = inPlaceCapRate.toFixed(2) + "%";
         document.getElementById("marketNOI").textContent = '$' + marketNOI.toFixed(2);
         document.getElementById("marketCapRate").textContent = marketCapRate.toFixed(2) + "%";
-        document.getElementById("marketYOC").textContent = trendedMarketYOC.toFixed(2) + "%";
+        document.getElementById("marketYOC").textContent = (marketRent / totalCostPerSF * 100).toFixed(2) + "%";
         document.getElementById("trendedMarketRent").textContent = '$' + trendedMarketRent.toFixed(2);
         document.getElementById("trendedMarketCapRate").textContent = trendedMarketCapRate.toFixed(2) + "%";
         document.getElementById("trendedMarketYOC").textContent = trendedMarketYOC.toFixed(2) + "%";
 
         // Show the output section
         document.getElementById("outputSection").style.display = "block";
+
     });
 });
 
 // Format number input with commas
 function formatNumber(input) {
-    let value = input.value.replace(/[^0-9.]/g, '');
+    let value = input.value.replace(/,/g, '');
     input.value = parseFloat(value).toLocaleString();
 }
 
