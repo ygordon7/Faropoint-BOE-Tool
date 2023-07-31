@@ -1,5 +1,6 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
     margin: 0;
     padding: 0;
 }
@@ -12,28 +13,38 @@ body {
 
 h1 {
     text-align: center;
+    color: #444;
 }
 
 .input-section {
     margin-bottom: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .input-section label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    color: #666;
 }
 
 .input-section input {
-    padding: 10px;
     width: 100%;
-    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
-.input-section button {
+button {
+    display: block;
+    margin-top: 20px;
+    padding: 10px 20px;
     background-color: #007bff;
     color: #fff;
     border: none;
-    padding: 10px 20px;
+    border-radius: 4px;
     cursor: pointer;
 }
 
@@ -42,6 +53,8 @@ h1 {
 }
 
 .output-section h2 {
+    color: #444;
+    margin-top: 20px;
     margin-bottom: 10px;
 }
 
@@ -51,11 +64,12 @@ table {
 }
 
 table, th, td {
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
     padding: 10px;
     text-align: left;
 }
 
 th {
-    background-color: #f2f2f2;
+    background-color: #f0f0f0;
+    color: #444;
 }
