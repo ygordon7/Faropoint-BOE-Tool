@@ -1,55 +1,97 @@
-document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("calculate").addEventListener("click", function() {
-        let rsf = parseFloat(document.getElementById("rsf").value.replace(/,/g, ''));
-        let price = parseFloat(document.getElementById("price").value.replace(/[^0-9.]/g, ''));
-        let inPlaceNOI = parseFloat(document.getElementById("inPlaceNOI").value.replace(/[^0-9.]/g, ''));
-        let marketRent = parseFloat(document.getElementById("marketRent").value.replace(/[^0-9.]/g, ''));
-        let costToStabilize = parseFloat(document.getElementById("costToStabilize").value.replace(/[^0-9.]/g, ''));
-        let marketRentGrowth = parseFloat(document.getElementById("marketRentGrowth").value) / 100;
-        let propertyAppreciation = parseFloat(document.getElementById("propertyAppreciation").value) / 100;
-        let investmentHorizon = parseInt(document.getElementById("investmentHorizon").value);
+<!DOCTYPE html>
+<html lang="en">
 
-        let pricePerSF = price / rsf;
-        let totalCostPerSF = pricePerSF + costToStabilize;
-        let inPlaceCapRate = (inPlaceNOI / pricePerSF) * 100;
-        let marketCapRate = (marketRent / pricePerSF) * 100;
-        let marketYieldOnCost = (marketRent / totalCostPerSF) * 100;
-        let trendedMarketRent = marketRent;
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
-        for (let i = 0; i < investmentHorizon; i++) {
-            trendedMarketRent += trendedMarketRent * marketRentGrowth;
-        }
+<body>
+    <div class="container">
+        <h1>Real Estate Calculator</h1>
 
-        let trendedMarket = trendedMarketRent * rsf;
-        let trendedMarketCap = trendedMarket / price;
-        let trendedMarketYOC = trendedMarket / (totalCostPerSF * rsf) * 100;
+        <div class="input-section">
+            <label for="rsf">RSF:</label>
+            <input type="text" id="rsf" oninput="formatNumberInput(this)" placeholder="RSF">
+            <label for="price">Price:</label>
+            <input type="text" id="price" oninput="formatCurrencyInput(this)" placeholder="Price">
+            <label for="inPlaceNOI">In Place NOI PSF:</label>
+            <input type="text" id="inPlaceNOI" oninput="formatCurrencyInput(this)" placeholder="In Place NOI PSF">
+            <label for="marketRent">Market Rent PSF:</label>
+            <input type="text" id="marketRent" oninput="formatCurrencyInput(this)" placeholder="Market Rent PSF">
+            <label for="costToStabilize">Cost to Stabilize:</label>
+            <input type="text" id="costToStabilize" oninput="formatCurrencyInput(this)" placeholder="Cost to Stabilize">
+            <label for="marketRentGrowth">Market Rent Growth CAGR:</label>
+            <input type="text" id="marketRentGrowth" oninput="formatNumberInput(this)" placeholder="Market Rent Growth CAGR">
+            <label for="propertyAppreciation">Property Appreciation:</label>
+            <input type="text" id="propertyAppreciation" oninput="formatNumberInput(this)" placeholder="Property Appreciation">
+            <label for="investmentHorizon">Investment Horizon:</label>
+            <input type="text" id="investmentHorizon" oninput="formatNumberInput(this)" placeholder="Investment Horizon">
+            <button id="calculate">Run</button>
+        </div>
 
-        document.getElementById("summaryRSF").textContent = rsf.toLocaleString();
-        document.getElementById("summaryPrice").textContent = '$' + price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        document.getElementById("pricePerSF").textContent = '$' + pricePerSF.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        document.getElementById("costToStabilizeOutput").textContent = '$' + costToStabilize.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        document.getElementById("totalCostPerSF").textContent = '$' + totalCostPerSF.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        document.getElementById("inPlaceNOIOutput").textContent = '$' + inPlaceNOI.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        document.getElementById("inPlaceCapRate").textContent = inPlaceCapRate.toFixed(2) + "%";
-        document.getElementById("marketRentOutput").textContent = '$' + marketRent.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        document.getElementById("marketCapRate").textContent = marketCapRate.toFixed(2) + "%";
-        document.getElementById("marketYieldOnCost").textContent = '$' + marketYieldOnCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        document.getElementById("trendedMarket").textContent = '$' + trendedMarket.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        document.getElementById("trendedMarketCap").textContent = trendedMarketCap.toFixed(2);
-        document.getElementById("trendedMarketYOC").textContent = trendedMarketYOC.toFixed(2) + "%";
+        <div class="output-section" id="outputSection">
+            <h2>Summary</h2>
+            <table>
+                <tr>
+                    <td>RSF:</td>
+                    <td id="summaryRSF"></td>
+                </tr>
+                <tr>
+                    <td>Price:</td>
+                    <td id="summaryPrice"></td>
+                </tr>
+                <tr>
+                    <td>Price PSF:</td>
+                    <td id="pricePerSF"></td>
+                </tr>
+                <tr>
+                    <td>Cost to Stabilize:</td>
+                    <td id="costToStabilizeOutput"></td>
+                </tr>
+                <tr>
+                    <td>Total Cost PSF:</td>
+                    <td id="totalCostPerSF"></td>
+                </tr>
+                <tr>
+                    <td>In Place NOI PSF:</td>
+                    <td id="inPlaceNOIOutput"></td>
+                </tr>
+                <tr>
+                    <td>In Place Cap Rate:</td>
+                    <td id="inPlaceCapRate"></td>
+                </tr>
+                <tr>
+                    <td>Market Rent PSF:</td>
+                    <td id="marketRentOutput"></td>
+                </tr>
+                <tr>
+                    <td>Market Cap Rate:</td>
+                    <td id="marketCapRate"></td>
+                </tr>
+                <tr>
+                    <td>Market Yield on Cost:</td>
+                    <td id="marketYieldOnCost"></td>
+                </tr>
+                <tr>
+                    <td>Trended Market:</td>
+                    <td id="trendedMarket"></td>
+                </tr>
+                <tr>
+                    <td>Trended Market Cap:</td>
+                    <td id="trendedMarketCap"></td>
+                </tr>
+                <tr>
+                    <td>Trended Market YOC:</td>
+                    <td id="trendedMarketYOC"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
 
-        document.getElementById("outputSection").style.display = "block";
-    });
-});
+    <script src="script.js"></script>
+</body>
 
-// Format number input with commas
-function formatNumberInput(input) {
-    let value = input.value.replace(/,/g, '');
-    input.value = value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-}
-
-// Format currency input with commas
-function formatCurrencyInput(input) {
-    let value = input.value.replace(/[^0-9.]/g, '');
-    input.value = '$' + value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-}
+</html>
