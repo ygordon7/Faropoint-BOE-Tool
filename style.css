@@ -1,6 +1,6 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f6f9;
+    background-color: #eef2f7;
     margin: 0;
     padding: 0;
     display: flex;
@@ -11,25 +11,22 @@ body {
 
 .calculator-box {
     background-color: #ffffff;
-    width: 500px;
+    width: 60%;
+    max-width: 600px;
     border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin: 20px;
+    overflow: hidden;
 }
 
-h2 {
+h2, h3 {
     color: #1f3a68;
     text-align: center;
     margin-bottom: 20px;
-}
-
-h3 {
-    color: #1f3a68;
-    text-align: center;
-    margin-top: 20px;
-    border-top: 1px solid #e0e7ed;
-    padding-top: 15px;
+    padding: 10px;
+    background-color: #e0e7ed;
+    border-radius: 8px;
 }
 
 .input-section, .output-section {
@@ -37,6 +34,7 @@ h3 {
     grid-template-columns: 1fr 2fr;
     gap: 15px;
     align-items: center;
+    margin-bottom: 15px;
 }
 
 label {
@@ -48,15 +46,15 @@ label {
 input {
     width: 100%;
     padding: 10px;
-    border: none;
+    border: 2px solid #e0e7ed;
     border-radius: 8px;
-    background-color: #e9f0f7;
+    background-color: #ffffff;
     font-size: 16px;
-    transition: background-color 0.3s ease;
+    transition: border-color 0.3s ease;
 }
 
 input:focus {
-    background-color: #e0e7ed;
+    border-color: #1f3a68;
     outline: none;
 }
 
@@ -76,12 +74,13 @@ button#runBtn:hover {
     background-color: #0e2438;
 }
 
-p {
+.output-label {
     font-size: 16px;
     color: #1f3a68;
-    margin: 6px 0;
 }
 
-strong {
+.output-value {
+    font-size: 16px;
+    color: #1f3a68;
     font-weight: bold;
 }
