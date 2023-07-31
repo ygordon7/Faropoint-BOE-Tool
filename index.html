@@ -6,49 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Real Estate Calculator</title>
     <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
 </head>
 
 <body>
-
-<div class="calculator-box">
-    <h2>Real Estate Calculator</h2>
-
-    <div class="input-section">
-        <label for="RSF">RSF:</label>
-        <input type="number" id="RSF">
-
-        <label for="price">Price:</label>
-        <input type="text" id="price" oninput="formatCurrency(this)">
-
-        <label for="inPlaceNOI">In Place NOI PSF:</label>
-        <input type="text" id="inPlaceNOI" oninput="formatCurrency(this)">
-
-        <label for="marketRent">Market Rent PSF:</label>
-        <input type="text" id="marketRent" oninput="formatCurrency(this)">
-
-        <label for="costToStabilize">Cost to Stabilize:</label>
-        <input type="text" id="costToStabilize" oninput="formatCurrency(this)">
-
-        <label for="growthCAGR">Market Rent Growth CAGR:</label>
-        <input type="text" id="growthCAGR" oninput="formatPercentage(this)">
-
-        <label for="propertyAppreciation">Property Appreciation:</label>
-        <input type="text" id="propertyAppreciation" oninput="formatPercentage(this)">
-
-        <label for="investmentHorizon">Investment Horizon:</label>
-        <input type="text" id="investmentHorizon" oninput="formatYears(this)">
+    <div class="container">
+        <div class="calculator-box">
+            <h2>Real Estate Calculator</h2>
+            <div class="input-section">
+                <label for="RSF">RSF:</label>
+                <input type="number" id="RSF">
+                <label for="price">Price:</label>
+                <input type="text" id="price" oninput="formatCurrency(this)">
+                <label for="inPlaceNOI">In Place NOI PSF:</label>
+                <input type="text" id="inPlaceNOI" oninput="formatCurrency(this)">
+                <label for="marketRent">Market Rent PSF:</label>
+                <input type="text" id="marketRent" oninput="formatCurrency(this)">
+                <label for="costToStabilize">Cost to Stabilize:</label>
+                <input type="text" id="costToStabilize" oninput="formatCurrency(this)">
+                <label for="growthCAGR">Market Rent Growth CAGR:</label>
+                <input type="text" id="growthCAGR" oninput="formatPercentage(this)">
+                <label for="propertyAppreciation">Property Appreciation:</label>
+                <input type="text" id="propertyAppreciation" oninput="formatPercentage(this)">
+                <label for="investmentHorizon">Investment Horizon:</label>
+                <input type="text" id="investmentHorizon" oninput="formatYears(this)">
+            </div>
+            <button id="runBtn" onclick="calculateOutputs()">Run</button>
+            <h3>Summary</h3>
+            <div class="output-section"></div>
+        </div>
     </div>
-
-    <button id="runBtn" onclick="calculateOutputs()">Run</button>
-
-    <h3>Summary</h3>
-
-    <div class="output-section">
-        <!-- Outputs will be populated here using JavaScript -->
-    </div>
-</div>
-
-<script src="script.js"></script>
 </body>
-
 </html>
