@@ -6,28 +6,27 @@ body {
 }
 
 .container {
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 600px;
+    margin: 20px auto;
     padding: 20px;
-}
-
-h1 {
-    text-align: center;
-    color: #444;
-}
-
-.input-section {
-    margin-bottom: 20px;
     background-color: #fff;
-    padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+}
+
 .input-section label {
-    display: block;
-    margin-bottom: 10px;
-    color: #666;
+    font-weight: bold;
 }
 
 .input-section input {
@@ -37,39 +36,40 @@ h1 {
     border-radius: 4px;
 }
 
-button {
-    display: block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #007bff;
+.output-section {
+    margin-top: 30px;
+    display: none;
+}
+
+.output-section h2 {
+    margin-bottom: 10px;
+}
+
+.output-section table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.output-section td {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.output-section td:first-child {
+    font-weight: bold;
+}
+
+#calculate {
+    grid-column: 1 / span 2;
+    padding: 10px;
+    background-color: #007BFF;
     color: #fff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
 }
 
-.output-section {
-    display: none;
+#calculate:hover {
+    background-color: #0056b3;
 }
 
-.output-section h2 {
-    color: #444;
-    margin-top: 20px;
-    margin-bottom: 10px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-table, th, td {
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: left;
-}
-
-th {
-    background-color: #f0f0f0;
-    color: #444;
-}
