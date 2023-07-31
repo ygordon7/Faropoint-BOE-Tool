@@ -15,21 +15,29 @@
         <div class="input-section">
             <label for="rsf">RSF:</label>
             <input type="text" id="rsf" oninput="formatNumberInput(this)" placeholder="RSF">
+
             <label for="price">Price:</label>
             <input type="text" id="price" oninput="formatCurrencyInput(this)" placeholder="Price">
-            <label for="inPlaceNOI">In Place NOI PSF:</label>
-            <input type="text" id="inPlaceNOI" oninput="formatCurrencyInput(this)" placeholder="In Place NOI PSF">
-            <label for="marketRent">Market Rent PSF:</label>
-            <input type="text" id="marketRent" oninput="formatCurrencyInput(this)" placeholder="Market Rent PSF">
+
+            <label for="inPlaceNOIPSF">In Place NOI PSF:</label>
+            <input type="text" id="inPlaceNOIPSF" oninput="formatCurrencyInput(this)" placeholder="In Place NOI PSF">
+
+            <label for="marketRentPSF">Market Rent PSF:</label>
+            <input type="text" id="marketRentPSF" oninput="formatCurrencyInput(this)" placeholder="Market Rent PSF">
+
             <label for="costToStabilize">Cost to Stabilize:</label>
             <input type="text" id="costToStabilize" oninput="formatCurrencyInput(this)" placeholder="Cost to Stabilize">
+
             <label for="marketRentGrowth">Market Rent Growth CAGR:</label>
             <input type="text" id="marketRentGrowth" oninput="formatNumberInput(this)" placeholder="Market Rent Growth CAGR">
+
             <label for="propertyAppreciation">Property Appreciation:</label>
             <input type="text" id="propertyAppreciation" oninput="formatNumberInput(this)" placeholder="Property Appreciation">
+
             <label for="investmentHorizon">Investment Horizon:</label>
             <input type="text" id="investmentHorizon" oninput="formatNumberInput(this)" placeholder="Investment Horizon">
-            <button id="calculate">Run</button>
+
+            <button id="calculate">Calculate</button>
         </div>
 
         <div class="output-section" id="outputSection">
@@ -43,6 +51,10 @@
                     <td>Price:</td>
                     <td id="summaryPrice"></td>
                 </tr>
+            </table>
+
+            <h2>Calculations</h2>
+            <table>
                 <tr>
                     <td>Price PSF:</td>
                     <td id="pricePerSF"></td>
