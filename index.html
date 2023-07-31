@@ -16,13 +16,13 @@
             <label for="rsf">RSF:</label>
             <input type="number" id="rsf" placeholder="e.g. 834232">
             <label for="price">Price:</label>
-            <input type="number" id="price" placeholder="e.g. 26500000">
+            <input type="text" id="price" placeholder="e.g. $26,500,000">
             <label for="inPlaceNOI">In Place NOI PSF:</label>
-            <input type="number" id="inPlaceNOI" placeholder="e.g. 6.15">
+            <input type="text" id="inPlaceNOI" placeholder="e.g. $6.15">
             <label for="marketRent">Market Rent PSF:</label>
-            <input type="number" id="marketRent" placeholder="e.g. 6.15">
+            <input type="text" id="marketRent" placeholder="e.g. $6.15">
             <label for="costToStabilize">Cost to Stabilize:</label>
-            <input type="number" id="costToStabilize" placeholder="e.g. 30.00">
+            <input type="text" id="costToStabilize" placeholder="e.g. $30.00">
             <label for="marketRentGrowth">Market Rent Growth CAGR:</label>
             <input type="number" id="marketRentGrowth" placeholder="e.g. 5.5">
             <label for="propertyAppreciation">Property Appreciation:</label>
@@ -35,7 +35,58 @@
         <div class="output-section" id="outputSection">
             <h2>Summary</h2>
             <table>
-                <!-- ... [rest of the table rows] ... -->
+                <tr>
+                    <td>RSF:</td>
+                    <td id="summaryRSF"></td>
+                </tr>
+                <tr>
+                    <td>Price:</td>
+                    <td id="summaryPrice"></td>
+                </tr>
+                <tr>
+                    <td>Price PSF:</td>
+                    <td id="pricePerSF"></td>
+                </tr>
+                <tr>
+                    <td>Cost to Stabilize:</td>
+                    <td id="costToStabilizeOutput"></td>
+                </tr>
+                <tr>
+                    <td>Total Cost PSF:</td>
+                    <td id="totalCostPerSF"></td>
+                </tr>
+                <tr>
+                    <td>In Place NOI PSF:</td>
+                    <td id="inPlaceNOIOutput"></td>
+                </tr>
+                <tr>
+                    <td>In Place Cap Rate:</td>
+                    <td id="inPlaceCapRate"></td>
+                </tr>
+                <tr>
+                    <td>Market Rent PSF:</td>
+                    <td id="marketRentOutput"></td>
+                </tr>
+                <tr>
+                    <td>Market Cap Rate:</td>
+                    <td id="marketCapRate"></td>
+                </tr>
+                <tr>
+                    <td>Market Yield on Cost:</td>
+                    <td id="marketYieldOnCost"></td>
+                </tr>
+                <tr>
+                    <td>Trended Market:</td>
+                    <td id="trendedMarket"></td>
+                </tr>
+                <tr>
+                    <td>Trended Market Cap:</td>
+                    <td id="trendedMarketCap"></td>
+                </tr>
+                <tr>
+                    <td>Trended Market YOC:</td>
+                    <td id="trendedMarketYOC"></td>
+                </tr>
             </table>
         </div>
     </div>
