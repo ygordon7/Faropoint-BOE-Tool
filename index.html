@@ -14,19 +14,19 @@
 
         <div class="input-section">
             <label for="purchasePrice">Purchase Price:</label>
-            <input type="text" id="purchasePrice" oninput="formatCurrency(this)" placeholder="Purchase Price">
+            <input type="text" id="purchasePrice" oninput="formatCurrency(this)">
             <label for="squareFeet">Square Feet:</label>
-            <input type="text" id="squareFeet" oninput="formatNumber(this)" placeholder="Square Feet">
+            <input type="text" id="squareFeet" oninput="formatNumber(this)">
             <label for="inPlaceRent">In-Place Rent:</label>
-            <input type="number" step="0.01" id="inPlaceRent" placeholder="In-Place Rent">
+            <input type="number" step="0.01" id="inPlaceRent">
             <label for="costToStabilize">Cost to Stabilize:</label>
-            <input type="number" step="0.01" id="costToStabilize" placeholder="Cost to Stabilize">
+            <input type="text" id="costToStabilize" oninput="formatCurrency(this)">
             <label for="marketRent">Market Rent:</label>
-            <input type="number" step="0.01" id="marketRent" placeholder="Market Rent">
+            <input type="text" id="marketRent" oninput="formatCurrency(this)">
             <label for="investmentHorizon">Investment Horizon (years):</label>
-            <input type="number" id="investmentHorizon" placeholder="Investment Horizon (years)">
+            <input type="number" id="investmentHorizon">
             <label for="rentGrowth">Rent Growth (%):</label>
-            <input type="number" step="0.01" id="rentGrowth" placeholder="Rent Growth (%)">
+            <input type="text" id="rentGrowth" oninput="formatNumber(this)">
             <button id="calculate">Calculate</button>
         </div>
 
