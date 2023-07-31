@@ -1,10 +1,10 @@
 function performCalculations() {
     // Input retrieval
     const rsf = parseFloat(document.getElementById('rsf').value);
-    const price = parseFloat(document.getElementById('price').value);
-    const inPlaceNOI = parseFloat(document.getElementById('inPlaceNOI').value);
-    const marketRent = parseFloat(document.getElementById('marketRent').value);
-    const costToStabilize = parseFloat(document.getElementById('costToStabilize').value);
+    const price = parseFloat(document.getElementById('price').value.replace(/\$|,/g, ''));
+    const inPlaceNOI = parseFloat(document.getElementById('inPlaceNOI').value.replace(/\$|,/g, ''));
+    const marketRent = parseFloat(document.getElementById('marketRent').value.replace(/\$|,/g, ''));
+    const costToStabilize = parseFloat(document.getElementById('costToStabilize').value.replace(/\$|,/g, ''));
     const marketRentGrowth = parseFloat(document.getElementById('marketRentGrowth').value) / 100; 
     const investmentHorizon = parseInt(document.getElementById('investmentHorizon').value);
 
@@ -13,10 +13,10 @@ function performCalculations() {
     const totalCostPerSF = pricePerSF + costToStabilize;
     const inPlaceCapRate = (inPlaceNOI / pricePerSF) * 100;
     const marketCapRate = (marketRent / pricePerSF) * 100;
-    const marketYieldOnCost = marketRent / totalCostPerSF;
-    const trendedMarket = marketRent * (Math.pow((1 + marketRentGrowth), investmentHorizon));
-    const trendedMarketCap = trendedMarket / pricePerSF;
-    const trendedMarketYOC = trendedMarket / totalCostPerSF;
+    const marketYieldOnCost = (marketRent / totalCostPerSF) * 100;
+    const trendedMarket = marketRent * Math.pow(1 + marketRentGrowth, investmentHorizon);
+    const trendedMarketCap = (trendedMarket / pricePerSF) * 100;
+    const trendedMarketYOC = (trendedMarket / totalCostPerSF) * 100;
 
     // Displaying outputs
     document.getElementById('summaryRSF').textContent = rsf.toLocaleString();
