@@ -1,97 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
+document.addEventListener("DOMContentLoaded", function() {
+    // Button event listener
+    document.getElementById("calculate").addEventListener("click", function() {
+        // Getting values from inputs
+        let rsf = parseFloat(document.getElementById("rsf").value.replace(/,/g, ''));
+        let price = parseFloat(document.getElementById("price").value.replace(/[^0-9.]/g, ''));
+        let inPlaceNOI = parseFloat(document.getElementById("inPlaceNOI").value.replace(/[^0-9.]/g, ''));
+        let marketRent = parseFloat(document.getElementById("marketRent").value.replace(/[^0-9.]/g, ''));
+        let costToStabilize = parseFloat(document.getElementById("costToStabilize").value.replace(/[^0-9.]/g, ''));
+        let marketRentGrowth = parseFloat(document.getElementById("marketRentGrowth").value.replace(/[^0-9.]/g, '')) / 100;
+        let propertyAppreciation = parseFloat(document.getElementById("propertyAppreciation").value.replace(/[^0-9.]/g, '')) / 100;
+        let investmentHorizon = parseFloat(document.getElementById("investmentHorizon").value.replace(/[^0-9.]/g, ''));
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Real Estate Calculator</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+        // Calculations
+        let pricePerSF = price / rsf;
+        let totalCostPerSF = pricePerSF + costToStabilize;
+        let inPlaceCapRate = (inPlaceNOI / pricePerSF) * 100;
+        let marketCapRate = (marketRent / rsf) * 100;
+        let marketYieldOnCost = (marketRent / totalCostPerSF) * 100;
 
-<body>
-    <div class="container">
-        <h1>Real Estate Calculator</h1>
+        let trendedMarketRent = marketRent;
+        for (let i = 0; i < investmentHorizon; i++) {
+            trendedMarketRent += trendedMarketRent * marketRentGrowth;
+        }
+        let trendedMarketCapRate = (trendedMarketRent / pricePerSF) * 100;
+        let trendedMarketYOC = (trendedMarketRent / totalCostPerSF) * 100;
 
-        <div class="input-section">
-            <label for="rsf">RSF:</label>
-            <input type="text" id="rsf" oninput="formatNumberInput(this)" placeholder="RSF">
-            <label for="price">Price:</label>
-            <input type="text" id="price" oninput="formatCurrencyInput(this)" placeholder="Price">
-            <label for="inPlaceNOI">In Place NOI PSF:</label>
-            <input type="text" id="inPlaceNOI" oninput="formatCurrencyInput(this)" placeholder="In Place NOI PSF">
-            <label for="marketRent">Market Rent PSF:</label>
-            <input type="text" id="marketRent" oninput="formatCurrencyInput(this)" placeholder="Market Rent PSF">
-            <label for="costToStabilize">Cost to Stabilize:</label>
-            <input type="text" id="costToStabilize" oninput="formatCurrencyInput(this)" placeholder="Cost to Stabilize">
-            <label for="marketRentGrowth">Market Rent Growth CAGR:</label>
-            <input type="text" id="marketRentGrowth" oninput="formatNumberInput(this)" placeholder="Market Rent Growth CAGR">
-            <label for="propertyAppreciation">Property Appreciation:</label>
-            <input type="text" id="propertyAppreciation" oninput="formatNumberInput(this)" placeholder="Property Appreciation">
-            <label for="investmentHorizon">Investment Horizon:</label>
-            <input type="text" id="investmentHorizon" oninput="formatNumberInput(this)" placeholder="Investment Horizon">
-            <button id="calculate">Run</button>
-        </div>
+        // Outputting results to HTML
+        document.getElementById("summaryRSF").textContent = rsf.toLocaleString();
+        document.getElementById("summaryPrice").textContent = '$' + price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+        document.getElementById("pricePerSF").textContent = '$' + pricePerSF.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+        document.getElementById("costToStabilizeOutput").textContent = '$' + costToStabilize.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+        document.getElementById("totalCostPerSF").textContent = '$' + totalCostPerSF.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+        document.getElementById("inPlaceNOIOutput").textContent = '$' + inPlaceNOI.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+        document.getElementById("inPlaceCapRate").textContent = inPlaceCapRate.toFixed(2) + "%";
+        document.getElementById("marketRentOutput").textContent = '$' + marketRent.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+        document.getElementById("marketCapRate").textContent = marketCapRate.toFixed(2) + "%";
+        document.getElementById("marketYieldOnCost").textContent = '$' + marketYieldOnCost.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+        document.getElementById("trendedMarket").textContent = '$' + trendedMarketRent.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+        document.getElementById("trendedMarketCap").textContent = trendedMarketCapRate.toFixed(2) + "%";
+        document.getElementById("trendedMarketYOC").textContent = trendedMarketYOC.toFixed(2) + "%";
 
-        <div class="output-section" id="outputSection">
-            <h2>Summary</h2>
-            <table>
-                <tr>
-                    <td>RSF:</td>
-                    <td id="summaryRSF"></td>
-                </tr>
-                <tr>
-                    <td>Price:</td>
-                    <td id="summaryPrice"></td>
-                </tr>
-                <tr>
-                    <td>Price PSF:</td>
-                    <td id="pricePerSF"></td>
-                </tr>
-                <tr>
-                    <td>Cost to Stabilize:</td>
-                    <td id="costToStabilizeOutput"></td>
-                </tr>
-                <tr>
-                    <td>Total Cost PSF:</td>
-                    <td id="totalCostPerSF"></td>
-                </tr>
-                <tr>
-                    <td>In Place NOI PSF:</td>
-                    <td id="inPlaceNOIOutput"></td>
-                </tr>
-                <tr>
-                    <td>In Place Cap Rate:</td>
-                    <td id="inPlaceCapRate"></td>
-                </tr>
-                <tr>
-                    <td>Market Rent PSF:</td>
-                    <td id="marketRentOutput"></td>
-                </tr>
-                <tr>
-                    <td>Market Cap Rate:</td>
-                    <td id="marketCapRate"></td>
-                </tr>
-                <tr>
-                    <td>Market Yield on Cost:</td>
-                    <td id="marketYieldOnCost"></td>
-                </tr>
-                <tr>
-                    <td>Trended Market:</td>
-                    <td id="trendedMarket"></td>
-                </tr>
-                <tr>
-                    <td>Trended Market Cap:</td>
-                    <td id="trendedMarketCap"></td>
-                </tr>
-                <tr>
-                    <td>Trended Market YOC:</td>
-                    <td id="trendedMarketYOC"></td>
-                </tr>
-            </table>
-        </div>
-    </div>
+        // Show the output section
+        document.getElementById("outputSection").style.display = "block";
+    });
+});
 
-    <script src="script.js"></script>
-</body>
+// Format number input with commas
+function formatNumberInput(input) {
+    let value = input.value.replace(/,/g, '');
+    input.value = value.replace(/\d(?=(\d{3})+\.)/g, '$&,');
+}
 
-</html>
+// Format currency input with commas
+function formatCurrencyInput(input) {
+    let value = input.value.replace(/[^0-9.]/g, '');
+    input.value = '$' + value.replace(/\d(?=(\d{3})+\.)/g, '$&,');
+}
