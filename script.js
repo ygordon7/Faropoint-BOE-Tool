@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function() {
 // Format number input with commas
 function formatNumberInput(input) {
     let value = input.value.replace(/,/g, '');
-    input.value = parseFloat(value).toLocaleString();
+    input.value = parseFloat(value).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
 // Format currency input with commas
