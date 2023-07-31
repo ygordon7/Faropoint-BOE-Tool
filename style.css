@@ -1,78 +1,87 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f6f6f6;
-    color: #333;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-.container {
-    width: 90%;
-    max-width: 600px;
-    margin: 0 auto;
+.calculator-box {
+    background-color: #ffffff;
+    width: 500px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    background-color: #fff;
-    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.1);
+    margin: 20px;
 }
 
-h1, h2 {
+h2 {
+    color: #1f3a68;
     text-align: center;
-}
-
-.input-section, .output-section {
     margin-bottom: 20px;
 }
 
+h3 {
+    color: #1f3a68;
+    text-align: center;
+    margin-top: 20px;
+    border-top: 1px solid #e0e7ed;
+    padding-top: 15px;
+}
+
+.input-section, .output-section {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 15px;
+    align-items: center;
+}
+
+label {
+    font-weight: bold;
+    color: #1f3a68;
+    text-align: right;
+}
+
 input {
-    display: block;
     width: 100%;
     padding: 10px;
-    margin-bottom: 10px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
     border: none;
-    color: #fff;
-    background-color: #007BFF;
-    cursor: pointer;
+    border-radius: 8px;
+    background-color: #e9f0f7;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
-button:hover {
-    background-color: #0056b3;
+input:focus {
+    background-color: #e0e7ed;
+    outline: none;
 }
 
-table {
+button#runBtn {
     width: 100%;
-    border-collapse: collapse;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #1f3a68;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
+button#runBtn:hover {
+    background-color: #0e2438;
 }
 
-tr:last-child td {
-    border-bottom: none;
+p {
+    font-size: 16px;
+    color: #1f3a68;
+    margin: 6px 0;
 }
 
-.output-section {
-    display: none;
-}
-
-.output-section table td {
-    font-size: 18px;
-}
-
-.output-section table tr:first-child {
-    background-color: #f6f6f6;
-}
-
-.output-section h2 {
-    margin-bottom: 10px;
+strong {
+    font-weight: bold;
 }
