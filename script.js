@@ -12,22 +12,22 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Calculations
         let pricePerSF = purchasePrice / squareFeet;
-        let totalCostPerSF = (pricePerSF + costToStabilize);
-        let inPlaceNOI = inPlaceRent / squareFeet;
-        let inPlaceCapRate = (inPlaceNOI / pricePerSF) * 100;
-        let marketNOI = marketRent / squareFeet;
-        let marketCapRate = (marketNOI / pricePerSF) * 100;
+        let totalCostPerSF = (pricePerSF + costToStabilize / squareFeet);
+        let inPlaceNOI = inPlaceRent;
+        let inPlaceCapRate = (inPlaceNOI / purchasePrice) * 100;
+        let marketNOI = marketRent;
+        let marketCapRate = (marketNOI / purchasePrice) * 100;
         let trendedMarketRent = marketRent;
 
         for (let i = 0; i < investmentHorizon; i++) {
             trendedMarketRent += trendedMarketRent * rentGrowth;
         }
 
-        let trendedMarketCapRate = (trendedMarketRent / pricePerSF) * 100;
+        let trendedMarketCapRate = (trendedMarketRent / purchasePrice) * 100;
         let trendedMarketYOC = (trendedMarketRent / totalCostPerSF) * 100;
 
         // Outputting results to HTML
-        document.getElementById("summaryPurchasePrice").textContent = '$' + purchasePrice.toLocaleString();
+        document.getElementById("summaryPurchasePrice").textContent = '$' + purchasePrice.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         document.getElementById("summarySquareFeet").textContent = squareFeet.toLocaleString();
         document.getElementById("pricePerSF").textContent = '$' + pricePerSF.toFixed(2);
         document.getElementById("costToStabilizeOutput").textContent = '$' + costToStabilize.toFixed(2);
