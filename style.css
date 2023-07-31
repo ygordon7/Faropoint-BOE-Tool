@@ -54,3 +54,29 @@ button {
 button:hover {
     background-color: #555;
 }
+
+.output-section {
+    display: none;
+}
+
+#outputSection {
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table td {
+    padding: 5px 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+table tr:last-child td {
+    border-bottom: none;
+}
+
+table tr:first-child td {
+    font-weight: bold;
+}
