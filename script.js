@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Getting values from inputs
         let purchasePrice = parseFloat(document.getElementById("purchasePrice").value.replace(/[^0-9.]/g, ''));
         let squareFeet = parseFloat(document.getElementById("squareFeet").value.replace(/[^0-9.]/g, ''));
-        let inPlaceRent = parseFloat(document.getElementById("inPlaceRent").value);
+        let inPlaceRent = parseFloat(document.getElementById("inPlaceRent").value.replace(/[^0-9.]/g, ''));
         let costToStabilize = parseFloat(document.getElementById("costToStabilize").value.replace(/[^0-9.]/g, ''));
         let marketRent = parseFloat(document.getElementById("marketRent").value.replace(/[^0-9.]/g, ''));
         let investmentHorizon = parseFloat(document.getElementById("investmentHorizon").value);
@@ -12,18 +12,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Calculations
         let pricePerSF = purchasePrice / squareFeet;
-        let inPlaceNOI = inPlaceRent * squareFeet;
-        let inPlaceCapRate = (inPlaceNOI / purchasePrice) * 100;
-        let marketNOI = marketRent * squareFeet;
-        let marketCapRate = (marketNOI / purchasePrice) * 100;
+        let totalCostPerSF = (pricePerSF + costToStabilize);
+        let inPlaceNOI = inPlaceRent / squareFeet;
+        let inPlaceCapRate = (inPlaceNOI / pricePerSF) * 100;
+        let marketNOI = marketRent / squareFeet;
+        let marketCapRate = (marketNOI / pricePerSF) * 100;
         let trendedMarketRent = marketRent;
 
         for (let i = 0; i < investmentHorizon; i++) {
             trendedMarketRent += trendedMarketRent * rentGrowth;
         }
 
-        let totalCostPerSF = (purchasePrice + costToStabilize) / squareFeet;
-        let trendedMarketCapRate = (trendedMarketRent * squareFeet / purchasePrice) * 100;
+        let trendedMarketCapRate = (trendedMarketRent / pricePerSF) * 100;
         let trendedMarketYOC = (trendedMarketRent / totalCostPerSF) * 100;
 
         // Outputting results to HTML
@@ -55,5 +55,5 @@ function formatNumber(input) {
 // Format currency input with commas
 function formatCurrency(input) {
     let value = input.value.replace(/[^0-9.]/g, '');
-    input.value = '$' + parseFloat(value).toLocaleString();
+    input.value = '$' + parseFloat(value).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
