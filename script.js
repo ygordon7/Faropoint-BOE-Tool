@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let investmentHorizon = parseInt(document.getElementById("investmentHorizon").value);
 
         let pricePerSF = price / rsf;
-        let totalCostPerSF = (price + costToStabilize) / rsf;
+        let totalCostPerSF = pricePerSF + costToStabilize;
         let inPlaceCapRate = (inPlaceNOI / pricePerSF) * 100;
         let marketCapRate = (marketRent / pricePerSF) * 100;
         let marketYieldOnCost = (marketRent / totalCostPerSF) * 100;
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("inPlaceCapRate").textContent = inPlaceCapRate.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + "%";
         document.getElementById("marketRentOutput").textContent = '$' + marketRent.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         document.getElementById("marketCapRate").textContent = marketCapRate.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + "%";
-        document.getElementById("marketYieldOnCost").textContent = '$' + marketYieldOnCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        document.getElementById("marketYieldOnCost").textContent = marketYieldOnCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         document.getElementById("trendedMarket").textContent = '$' + trendedMarket.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         document.getElementById("trendedMarketCap").textContent = trendedMarketCap.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         document.getElementById("trendedMarketYOC").textContent = trendedMarketYOC.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + "%";
@@ -44,10 +44,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function formatNumberInput(input) {
     let value = input.value.replace(/,/g, '');
-    input.value = parseFloat(value).toLocaleString();
+    input.value = value.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
 }
 
 function formatCurrencyInput(input) {
     let value = input.value.replace(/[^0-9.]/g, '');
-    input.value = '$' + parseFloat(value).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    input.value = '$' + value.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
 }
