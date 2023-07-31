@@ -1,35 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Faropoint BOE Tool</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="container">
         <h1>Faropoint BOE Tool</h1>
         
-        <!-- Input fields -->
-        <div class="input-container">
+        <div class="input-section">
             <label for="purchasePrice">Purchase Price:</label>
-            <input type="text" id="purchasePrice" required>
+            <input type="number" id="purchasePrice" step="0.01">
+            
+            <label for="sf">SF:</label>
+            <input type="number" id="sf" step="0.01">
+            
+            <label for="inPlaceRent">In-Place Rent ($/SF):</label>
+            <input type="number" id="inPlaceRent" step="0.01">
+            
+            <label for="marketRent">Market Rent ($/SF):</label>
+            <input type="number" id="marketRent" step="0.01">
+            
+            <label for="marketRentGrowth">Market Rent Growth (%):</label>
+            <input type="number" id="marketRentGrowth" step="0.01">
+            
+            <label for="investmentHorizon">Investment Horizon (years):</label>
+            <input type="number" id="investmentHorizon">
+            
+            <label for="costToStabilize">Cost to Stabilize ($/SF):</label>
+            <input type="number" id="costToStabilize" step="0.01">
+            
+            <button onclick="calculate()">Calculate</button>
         </div>
-        <div class="input-container">
-            <label for="sf">Square Footage:</label>
-            <input type="text" id="sf" required>
+        
+        <div class="output-section">
+            <!-- This will be populated by the JavaScript -->
         </div>
-        <!-- ... Add other input fields similarly ... -->
-
-        <button id="calculateButton">Calculate</button>
-
-        <!-- Results -->
-        <h2>Results</h2>
-        <div id="pricePSF"></div>
-        <div id="inPlaceRent"></div>
-        <!-- ... Add other result fields similarly ... -->
     </div>
-
-    <script src="scripts.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>
