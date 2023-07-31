@@ -1,33 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Faropoint BOE Tool</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
     <div class="container">
         <h1>Faropoint BOE Tool</h1>
-        <form id="calculatorForm">
-            <input type="number" id="price" placeholder="Purchase Price">
-            <input type="number" id="sf" placeholder="SF">
-            <input type="number" id="rent" placeholder="In-Place Rent PSF">
-            <input type="number" id="marketRent" placeholder="Market Rent">
-            <input type="number" id="horizon" placeholder="Investment Horizon">
-            <input type="number" id="growth" placeholder="Annual Rent Growth %">
-            <input type="number" id="interestRate" placeholder="Interest Rate %">
-            <input type="number" id="appreciation" placeholder="Annual Appreciation %">
-            <button type="submit">Calculate</button>
-        </form>
-        <div id="results">
-            <!-- Results will be displayed here -->
+        
+        <!-- Input fields -->
+        <div class="input-container">
+            <label for="purchasePrice">Purchase Price:</label>
+            <input type="text" id="purchasePrice" required>
         </div>
-    </div>
-    <script src="script.js"></script>
-</body>
+        <div class="input-container">
+            <label for="sf">Square Footage:</label>
+            <input type="text" id="sf" required>
+        </div>
+        <!-- ... Add other input fields similarly ... -->
 
+        <button id="calculateButton">Calculate</button>
+
+        <!-- Results -->
+        <h2>Results</h2>
+        <div id="pricePSF"></div>
+        <div id="inPlaceRent"></div>
+        <!-- ... Add other result fields similarly ... -->
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
 </html>
