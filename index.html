@@ -1,98 +1,63 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Real Estate Calculator</title>
-    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <div class="container">
-        <h1>Real Estate Calculator</h1>
+    <div class="calculator-box">
+        <h2>Real Estate Calculator</h2>
 
+        <!-- Input Section -->
         <div class="input-section">
             <label for="rsf">RSF:</label>
-            <input type="number" id="rsf" placeholder="e.g. 834232">
+            <input type="number" id="rsf" step="0.01">
+
             <label for="price">Price:</label>
-            <input type="number" id="price" placeholder="e.g. 26500000">
+            <input type="number" id="price" step="0.01">
+
             <label for="inPlaceNOI">In Place NOI PSF:</label>
-            <input type="text" id="inPlaceNOI" placeholder="e.g. $6.15">
+            <input type="number" id="inPlaceNOI" step="0.01" oninput="formatCurrency(this)">
+
             <label for="marketRent">Market Rent PSF:</label>
-            <input type="text" id="marketRent" placeholder="e.g. $6.15">
+            <input type="number" id="marketRent" step="0.01" oninput="formatCurrency(this)">
+
             <label for="costToStabilize">Cost to Stabilize:</label>
-            <input type="text" id="costToStabilize" placeholder="e.g. $30.00">
-            <label for="marketRentGrowth">Market Rent Growth CAGR:</label>
-            <input type="number" id="marketRentGrowth" placeholder="e.g. 5.5">
+            <input type="number" id="costToStabilize" step="0.01" oninput="formatCurrency(this)">
+
+            <label for="growthCAGR">Market Rent Growth CAGR:</label>
+            <input type="number" id="growthCAGR" step="0.01" oninput="formatPercentage(this)">
+
             <label for="propertyAppreciation">Property Appreciation:</label>
-            <input type="number" id="propertyAppreciation" placeholder="e.g. 3">
+            <input type="number" id="propertyAppreciation" step="0.01" oninput="formatPercentage(this)">
+
             <label for="investmentHorizon">Investment Horizon:</label>
-            <input type="number" id="investmentHorizon" placeholder="e.g. 5">
-            <button id="calculate">Run</button>
+            <input type="number" id="investmentHorizon" step="1" oninput="formatYears(this)">
         </div>
 
-        <div class="output-section" id="outputSection">
-            <h2>Summary</h2>
-            <table>
-                <tr>
-                    <td>RSF:</td>
-                    <td id="summaryRSF"></td>
-                </tr>
-                <tr>
-                    <td>Price:</td>
-                    <td id="summaryPrice"></td>
-                </tr>
-                <tr>
-                    <td>Price PSF:</td>
-                    <td id="pricePerSF"></td>
-                </tr>
-                <tr>
-                    <td>Cost to Stabilize:</td>
-                    <td id="costToStabilizeOutput"></td>
-                </tr>
-                <tr>
-                    <td>Total Cost PSF:</td>
-                    <td id="totalCostPerSF"></td>
-                </tr>
-                <tr>
-                    <td>In Place NOI PSF:</td>
-                    <td id="inPlaceNOIOutput"></td>
-                </tr>
-                <tr>
-                    <td>In Place Cap Rate:</td>
-                    <td id="inPlaceCapRate"></td>
-                </tr>
-                <tr>
-                    <td>Market Rent PSF:</td>
-                    <td id="marketRentOutput"></td>
-                </tr>
-                <tr>
-                    <td>Market Cap Rate:</td>
-                    <td id="marketCapRate"></td>
-                </tr>
-                <tr>
-                    <td>Market Yield on Cost:</td>
-                    <td id="marketYieldOnCost"></td>
-                </tr>
-                <tr>
-                    <td>Trended Market:</td>
-                    <td id="trendedMarket"></td>
-                </tr>
-                <tr>
-                    <td>Trended Market Cap:</td>
-                    <td id="trendedMarketCap"></td>
-                </tr>
-                <tr>
-                    <td>Trended Market YOC:</td>
-                    <td id="trendedMarketYOC"></td>
-                </tr>
-            </table>
+        <!-- Run Button -->
+        <button id="runBtn" onclick="calculateOutputs()">Run</button>
+
+        <!-- Output Section -->
+        <div class="output-section">
+            <h3>Summary</h3>
+            <p><strong>RSF:</strong> <span id="outputRSF"></span></p>
+            <p><strong>Price:</strong> <span id="outputPrice"></span></p>
+            <p><strong>Price PSF:</strong> <span id="outputPricePSF"></span></p>
+            <p><strong>Cost to Stabilize:</strong> <span id="outputCostToStabilize"></span></p>
+            <p><strong>Total Cost PSF:</strong> <span id="outputTotalCostPSF"></span></p>
+            <p><strong>In Place NOI PSF:</strong> <span id="outputInPlaceNOIPSF"></span></p>
+            <p><strong>In Place Cap Rate:</strong> <span id="outputInPlaceCapRate"></span></p>
+            <p><strong>Market Rent PSF:</strong> <span id="outputMarketRentPSF"></span></p>
+            <p><strong>Market Cap Rate:</strong> <span id="outputMarketCapRate"></span></p>
+            <p><strong>Market Yield on Cost:</strong> <span id="outputMarketYOC"></span></p>
+            <p><strong>Trended Market:</strong> <span id="outputTrendedMarket"></span></p>
+            <p><strong>Trended Market Cap:</strong> <span id="outputTrendedMarketCap"></span></p>
+            <p><strong>Trended Market YOC:</strong> <span id="outputTrendedMarketYOC"></span></p>
         </div>
     </div>
-
     <script src="script.js"></script>
 </body>
-
 </html>
