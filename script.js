@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         let totalCostPerSF = (purchasePrice + costToStabilize) / squareFeet;
         let trendedMarketCapRate = (trendedMarketRent * squareFeet / purchasePrice) * 100;
-        let trendedMarketYOC = (marketRent / totalCostPerSF) * 100;
+        let trendedMarketYOC = (trendedMarketRent / totalCostPerSF) * 100;
 
         // Outputting results to HTML
         document.getElementById("summaryPurchasePrice").textContent = '$' + purchasePrice.toLocaleString();
