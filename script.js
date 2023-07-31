@@ -2,11 +2,11 @@ document.addEventListener("DOMContentLoaded", function() {
     // Button event listener
     document.getElementById("calculate").addEventListener("click", function() {
         // Getting values from inputs
-        let purchasePrice = parseFloat(document.getElementById("purchasePrice").value.replace(/,/g, ''));
-        let squareFeet = parseFloat(document.getElementById("squareFeet").value.replace(/,/g, ''));
+        let purchasePrice = parseFloat(document.getElementById("purchasePrice").value.replace(/[^0-9.]/g, ''));
+        let squareFeet = parseFloat(document.getElementById("squareFeet").value.replace(/[^0-9.]/g, ''));
         let inPlaceRent = parseFloat(document.getElementById("inPlaceRent").value);
-        let costToStabilize = parseFloat(document.getElementById("costToStabilize").value);
-        let marketRent = parseFloat(document.getElementById("marketRent").value);
+        let costToStabilize = parseFloat(document.getElementById("costToStabilize").value.replace(/[^0-9.]/g, ''));
+        let marketRent = parseFloat(document.getElementById("marketRent").value.replace(/[^0-9.]/g, ''));
         let investmentHorizon = parseFloat(document.getElementById("investmentHorizon").value);
         let rentGrowth = parseFloat(document.getElementById("rentGrowth").value) / 100;
 
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Format number input with commas
 function formatNumber(input) {
-    let value = input.value.replace(/,/g, '');
+    let value = input.value.replace(/[^0-9.]/g, '');
     input.value = parseFloat(value).toLocaleString();
 }
 
