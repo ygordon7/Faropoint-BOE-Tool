@@ -11,36 +11,38 @@
 <body>
     <div class="container">
         <h1>Faropoint BOE Tool</h1>
-        
+
         <div class="input-section">
             <label for="purchasePrice">Purchase Price:</label>
-            <input type="number" id="purchasePrice" step="0.01">
-            
-            <label for="sf">SF:</label>
-            <input type="number" id="sf" step="0.01">
-            
-            <label for="inPlaceRent">In-Place Rent ($/SF):</label>
-            <input type="number" id="inPlaceRent" step="0.01">
-            
-            <label for="marketRent">Market Rent ($/SF):</label>
-            <input type="number" id="marketRent" step="0.01">
-            
-            <label for="marketRentGrowth">Market Rent Growth (%):</label>
-            <input type="number" id="marketRentGrowth" step="0.01">
-            
+            <input type="number" step="0.01" id="purchasePrice" placeholder="Purchase Price">
+            <label for="squareFeet">Square Feet:</label>
+            <input type="number" step="0.01" id="squareFeet" placeholder="Square Feet">
+            <label for="inPlaceRent">In-Place Rent:</label>
+            <input type="number" step="0.01" id="inPlaceRent" placeholder="In-Place Rent">
+            <label for="costToStabilize">Cost to Stabilize:</label>
+            <input type="number" step="0.01" id="costToStabilize" placeholder="Cost to Stabilize">
+            <label for="marketRent">Market Rent:</label>
+            <input type="number" step="0.01" id="marketRent" placeholder="Market Rent">
             <label for="investmentHorizon">Investment Horizon (years):</label>
-            <input type="number" id="investmentHorizon">
-            
-            <label for="costToStabilize">Cost to Stabilize ($/SF):</label>
-            <input type="number" id="costToStabilize" step="0.01">
-            
-            <button onclick="calculate()">Calculate</button>
+            <input type="number" id="investmentHorizon" placeholder="Investment Horizon (years)">
+            <label for="rentGrowth">Rent Growth (%):</label>
+            <input type="number" step="0.01" id="rentGrowth" placeholder="Rent Growth (%)">
+            <button id="calculate">Calculate</button>
         </div>
-        
+
         <div class="output-section">
-            <!-- This will be populated by the JavaScript -->
+            <p>Price per SF: <span id="pricePerSF"></span></p>
+            <p>In-Place NOI: <span id="inPlaceNOI"></span></p>
+            <p>In-Place Cap Rate: <span id="inPlaceCapRate"></span></p>
+            <p>Market NOI: <span id="marketNOI"></span></p>
+            <p>Market Cap Rate: <span id="marketCapRate"></span></p>
+            <p>Trended Market Rent: <span id="trendedMarketRent"></span></p>
+            <p>Total Cost per SF: <span id="totalCostPerSF"></span></p>
+            <p>Trended Market Cap Rate: <span id="trendedMarketCapRate"></span></p>
+            <p>Trended Market YOC: <span id="trendedMarketYOC"></span></p>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 
