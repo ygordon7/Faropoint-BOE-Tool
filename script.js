@@ -30,24 +30,26 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("costToStabilizeOutput").textContent = '$' + costToStabilize.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         document.getElementById("totalCostPerSF").textContent = '$' + totalCostPerSF.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         document.getElementById("inPlaceNOIOutput").textContent = '$' + inPlaceNOI.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        document.getElementById("inPlaceCapRate").textContent = inPlaceCapRate.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + "%";
+        document.getElementById("inPlaceCapRate").textContent = inPlaceCapRate.toFixed(2) + "%";
         document.getElementById("marketRentOutput").textContent = '$' + marketRent.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        document.getElementById("marketCapRate").textContent = marketCapRate.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + "%";
-        document.getElementById("marketYieldOnCost").textContent = marketYieldOnCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        document.getElementById("marketCapRate").textContent = marketCapRate.toFixed(2) + "%";
+        document.getElementById("marketYieldOnCost").textContent = '$' + marketYieldOnCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         document.getElementById("trendedMarket").textContent = '$' + trendedMarket.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        document.getElementById("trendedMarketCap").textContent = trendedMarketCap.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        document.getElementById("trendedMarketYOC").textContent = trendedMarketYOC.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + "%";
+        document.getElementById("trendedMarketCap").textContent = trendedMarketCap.toFixed(2);
+        document.getElementById("trendedMarketYOC").textContent = trendedMarketYOC.toFixed(2) + "%";
 
         document.getElementById("outputSection").style.display = "block";
     });
 });
 
+// Format number input with commas
 function formatNumberInput(input) {
     let value = input.value.replace(/,/g, '');
-    input.value = value.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+    input.value = parseFloat(value).toLocaleString();
 }
 
+// Format currency input with commas
 function formatCurrencyInput(input) {
     let value = input.value.replace(/[^0-9.]/g, '');
-    input.value = '$' + value.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+    input.value = '$' + parseFloat(value).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
