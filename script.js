@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
 
     // Button event listener
-    document.getElementById("calculate").addEventListener("click", function() {
+    document.addEventListener("click", function() {
 
         // Getting values from inputs
         let purchasePrice = parseFloat(document.getElementById("purchasePrice").value);
