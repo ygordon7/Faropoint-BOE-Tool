@@ -1,56 +1,66 @@
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f7f9fc;
+    font-family: 'Nunito', sans-serif;
+    background-color: #eaeaea;
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
     margin: 0;
     padding: 20px;
-    color: #333;
+    color: #555;
 }
 
 .calculator-container {
-    max-width: 600px;
+    width: 80%;
+    max-width: 800px;
     background-color: #ffffff;
-    border-radius: 15px;
-    padding: 30px 40px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    margin: 50px auto;
-    position: relative;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 h2 {
     text-align: center;
-    margin-bottom: 25px;
-    color: #2C3E50;
+    color: #333;
+    margin-bottom: 40px;
+    font-weight: 700;
 }
 
 .input-section, .output-section {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
 }
 
 input {
     padding: 12px 15px;
-    border-radius: 8px;
-    border: 1px solid #d9d9d9;
-    transition: border-color 0.3s;
+    border-radius: 12px;
+    border: 2px solid #d1d1d1;
+    transition: all 0.3s;
     font-size: 16px;
-    outline: none;
+    width: 100%;
+    font-weight: 600;
+    color: #555;
 }
 
 input:focus {
     border-color: #3498db;
-    box-shadow: 0 0 0 1px #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.4);
+    outline: none;
 }
 
 button {
-    padding: 15px 25px;
+    grid-column: span 2;
+    padding: 15px 0;
     background-color: #3498db;
-    color: #fff;
+    color: #ffffff;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: 600;
     transition: background-color 0.3s;
+    text-transform: uppercase;
 }
 
 button:hover {
@@ -58,23 +68,30 @@ button:hover {
 }
 
 .output-section {
-    margin-top: 30px;
-    border-top: 2px solid #d9d9d9;
+    margin-top: 40px;
+    border-top: 3px solid #3498db;
     padding-top: 30px;
 }
 
 .output-section p {
     font-size: 18px;
-    line-height: 1.6;
+    line-height: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 span {
-    font-weight: 600;
-    color: #2C3E50;
+    font-weight: 700;
+    color: #333;
+    font-size: 19px;
 }
 
 @media screen and (max-width: 768px) {
-    .calculator-container {
-        padding: 20px;
+    .input-section, .output-section {
+        grid-template-columns: 1fr;
+    }
+    button {
+        grid-column: 1;
     }
 }
