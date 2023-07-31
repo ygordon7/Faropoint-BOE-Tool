@@ -49,9 +49,30 @@ button:hover {
 
 table {
     width: 100%;
+    border-collapse: collapse;
 }
 
 td {
-    padding: 5px;
+    padding: 10px;
     border-bottom: 1px solid #ddd;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+.output-section {
+    display: none;
+}
+
+.output-section table td {
+    font-size: 18px;
+}
+
+.output-section table tr:first-child {
+    background-color: #f6f6f6;
+}
+
+.output-section h2 {
+    margin-bottom: 10px;
 }
