@@ -3,11 +3,11 @@ document.getElementById("calculate").addEventListener("click", performCalculatio
 function performCalculations() {
     // Input retrieval
     const rsf = parseFloat(document.getElementById('rsf').value);
-    const price = parseFloat(document.getElementById('price').value);
-    const inPlaceNOI = parseFloat(document.getElementById('inPlaceNOI').value.replace(/[^0-9.]/g, ''));
-    const marketRent = parseFloat(document.getElementById('marketRent').value.replace(/[^0-9.]/g, ''));
-    const costToStabilize = parseFloat(document.getElementById('costToStabilize').value.replace(/[^0-9.]/g, ''));
-    const marketRentGrowth = parseFloat(document.getElementById('marketRentGrowth').value) / 100; 
+    const price = parseFloat(document.getElementById('price').value.replace(/[$,]/g, ''));
+    const inPlaceNOI = parseFloat(document.getElementById('inPlaceNOI').value.replace(/[$,]/g, ''));
+    const marketRent = parseFloat(document.getElementById('marketRent').value.replace(/[$,]/g, ''));
+    const costToStabilize = parseFloat(document.getElementById('costToStabilize').value.replace(/[$,]/g, ''));
+    const marketRentGrowth = parseFloat(document.getElementById('marketRentGrowth').value) / 100;
     const investmentHorizon = parseInt(document.getElementById('investmentHorizon').value);
 
     // Calculations
